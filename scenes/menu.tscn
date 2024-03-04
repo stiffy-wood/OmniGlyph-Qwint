@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6th4y55c21n0"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_acn51"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_acn51")
+
+[node name="JoinButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 119.0
+offset_right = 634.0
+offset_bottom = 151.0
+text = "Join"
+
+[node name="AddressField" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 75.0
+offset_right = 710.0
+offset_bottom = 113.0
+text = "127.0.0.1"
+placeholder_text = "Host IP Address"
+context_menu_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+caret_multiple = false
+
+[node name="HostButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 163.0
+offset_right = 634.0
+offset_bottom = 195.0
+text = "Host
+"
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 263.0
+offset_right = 633.0
+offset_bottom = 295.0
+text = "Start"
+
+[node name="PlayerCountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 12.0
+offset_right = 1133.0
+offset_bottom = 35.0
+text = "1/8 Players"

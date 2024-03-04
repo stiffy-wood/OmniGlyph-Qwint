@@ -1,0 +1,58 @@
+[gd_scene load_steps=14 format=3 uid="uid://cvyamhh5bq1oq"]
+
+[ext_resource type="Script" path="res://scripts/game_scripts/controller.gd" id="1_ox5gk"]
+[ext_resource type="Script" path="res://scripts/game_scripts/client.gd" id="2_p6bbs"]
+[ext_resource type="Script" path="res://scripts/game_scripts/draw_pile.gd" id="3_ou2yu"]
+[ext_resource type="Script" path="res://scripts/game_scripts/camera.gd" id="4_jpjsk"]
+[ext_resource type="PackedScene" uid="uid://bhs7jomdnl0dv" path="res://card.blend" id="5_7bq1p"]
+[ext_resource type="Shader" path="res://materials/card.gdshader" id="6_aj5q8"]
+[ext_resource type="Texture2D" uid="uid://cxfahp0rovmul" path="res://textures/cards/Back.png" id="7_h71t5"]
+[ext_resource type="Texture2D" uid="uid://do5uctnc54ncs" path="res://textures/cards/Card_base.png" id="8_3m5nt"]
+[ext_resource type="Texture2D" uid="uid://jej1ypn0jxrk" path="res://textures/cards/Omni.png" id="9_045uv"]
+[ext_resource type="Texture2D" uid="uid://c6ysop0l2mgrb" path="res://textures/cards/Tier4.png" id="10_6s3wf"]
+[ext_resource type="Texture2D" uid="uid://b6s3srcxexvv1" path="res://textures/cards/Rank7.png" id="11_tx3qq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_heoif"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hmgru"]
+render_priority = 0
+shader = ExtResource("6_aj5q8")
+shader_parameter/textures_used = PackedInt32Array(1, 1, 1, 1, 1)
+shader_parameter/card_textures = Array[Texture2D]([ExtResource("8_3m5nt"), ExtResource("7_h71t5"), ExtResource("9_045uv"), ExtResource("10_6s3wf"), ExtResource("11_tx3qq")])
+
+[node name="Game" type="Node"]
+script = ExtResource("1_ox5gk")
+
+[node name="Client" type="Node" parent="."]
+script = ExtResource("2_p6bbs")
+
+[node name="DrawPile" type="Area3D" parent="Client"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.22372, 0, -3.60225)
+script = ExtResource("3_ou2yu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Client/DrawPile"]
+shape = SubResource("BoxShape3D_heoif")
+
+[node name="Hands" type="Node3D" parent="Client"]
+
+[node name="Piles" type="Node3D" parent="Client"]
+
+[node name="FreeLookCamera" type="Camera3D" parent="."]
+transform = Transform3D(-1, -4.06378e-08, 7.74036e-08, 2.30302e-08, 0.731663, 0.681666, -8.43347e-08, 0.681666, -0.731663, 0, 3.00179, -5.51806)
+fov = 80.2
+script = ExtResource("4_jpjsk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.274106, 0.874535, -0.400068, -0.015853, 0.420053, 0.907361, 0.961569, -0.242371, 0.129003, -4.16872, 0, 0.460069)
+
+[node name="card" parent="." instance=ExtResource("5_7bq1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85179, 0, 2.92588)
+
+[node name="Cube" parent="card" index="0"]
+layers = 1
+surface_material_override/0 = SubResource("ShaderMaterial_hmgru")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(11.5719, 0, 0, 0, 0.1935, 0, 0, 0, 11.5719, 0.017631, -0.213168, 0.000645161)
+
+[editable path="card"]

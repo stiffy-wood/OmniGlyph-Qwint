@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3cjeuu348rys"]
+
+[ext_resource type="Script" path="res://scripts/game_scripts/controller.gd" id="1_m24xx"]
+[ext_resource type="Script" path="res://scripts/game_scripts/client.gd" id="2_cwd18"]
+[ext_resource type="Script" path="res://scripts/game_scripts/draw_pile.gd" id="3_at1b1"]
+[ext_resource type="Script" path="res://scripts/game_scripts/camera.gd" id="4_xbigt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv1i8"]
+
+[node name="Controller" type="Node"]
+script = ExtResource("1_m24xx")
+
+[node name="Client" type="Node" parent="."]
+script = ExtResource("2_cwd18")
+
+[node name="Piles" type="Node3D" parent="Client"]
+
+[node name="DrawPile" type="Area3D" parent="Client"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+script = ExtResource("3_at1b1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Client/DrawPile"]
+shape = SubResource("BoxShape3D_gv1i8")
+
+[node name="Camera3D" type="Camera3D" parent="Client"]
+transform = Transform3D(1, 0, 0, 0, 0.0419977, 0.999118, 0, -0.999118, 0.0419977, -0.0169792, 1.73625, 0.172071)
+script = ExtResource("4_xbigt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Client"]
+transform = Transform3D(0.692093, 0.395773, 0.603632, -0.721809, 0.37948, 0.578781, 0, -0.836277, 0.548308, 0, 0, 0)
+
+[node name="Hands" type="Node3D" parent="Client"]
